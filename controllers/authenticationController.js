@@ -57,5 +57,5 @@ exports.login_get = (req, res, next) => {
 
 exports.login_post = passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/"
+    failureRedirect: "/log-in"
 });
