@@ -7,8 +7,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/// ---  SIGNUP  --- ///
+/// ---  SIGN UP  --- ///
 router.get('/sign-up', authentication_controller.signup_get);
 router.post("/sign-up", authentication_controller.signup_post);
+
+/// ---  LOG IN  --- ///
+router.get("/log-in", authentication_controller.login_get);
 
 module.exports = router;

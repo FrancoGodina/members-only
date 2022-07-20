@@ -46,3 +46,7 @@ exports.signup_post = [
         }
     }
 ]
+
+exports.login_get = (req, res, next) => {
+    res.render("login_form", { title: "Log in" });
+};
