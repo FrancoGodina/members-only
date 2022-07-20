@@ -8,6 +8,8 @@ var logger = require('morgan');
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user");
+const bcrypt = require("bcryptjs");
 
 // set up mongoose connection
 var mongoose = require("mongoose");
@@ -26,6 +28,11 @@ app.set('view engine', 'pug');
 
 const secretString = process.env.SECRET_STRING;
 app.use(session({ secret: secretString, resave: false, saveUninitialized: true }));
+
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 passport.use(
   new LocalStrategy((username, password, done) => {
