@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+form(action="/sign-up" method="POST")
+    h1=title
+    div
+        label(for="username") Username:
+        input(name="username" required="true" type="text" maxLength="20")
+        if(error)
+            p #{error}
+    div
+        label(for="password") Password:
+        input(name="password" required="true" type="password")
+    div
+        label(for="confirmPassword") Confirm Password:
+        input#confirmPassword(name="confirmPassword" required="true" type="password")
+        if(passwordConfirmationError)
+            p #{passwordConfirmationError}
