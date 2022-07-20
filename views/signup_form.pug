@@ -17,3 +17,4 @@ form(action="/sign-up" method="POST")
         input#confirmPassword(name="confirmPassword" required="true" type="password")
         if(passwordConfirmationError)
             p #{passwordConfirmationError}
+    button(type="submit") Register
