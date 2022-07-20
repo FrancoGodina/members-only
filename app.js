@@ -26,6 +26,37 @@ app.set('view engine', 'pug');
 
 const secretString = process.env.SECRET_STRING;
 app.use(session({ secret: secretString, resave: false, saveUninitialized: true }));
+
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+      if (err) { 
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      }
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (!res) {
+            return done(null, false, { message: "Incorrect password" })
+        } else {
+            return done(null, user);
+        }
+      });
+    });
+  })
+);
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
