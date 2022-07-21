@@ -27,5 +27,6 @@ router.post("/member", user_controller.member_post);
 
 /// ---  ADMIN  --- ///
 router.get("/admin", user_controller.admin_get);
+router.post("/admin", user_controller.admin_post);
 
 module.exports = router;
