@@ -16,3 +16,8 @@ block content
                         h2= message.title
                         p= message.text
                         p Log in and become a member to see message's author and date.
+                    if (user && user.admin)
+                        div
+                            form(action="" method="POST")
+                                input(type="hidden" name="messageId" required="true" value=message._id)
+                                button(type="submit") Delete

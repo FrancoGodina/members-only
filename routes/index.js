@@ -5,8 +5,10 @@ const index_controller = require("../controllers/indexController");
 const message_controller = require("../controllers/messageController");
 const user_controller = require("../controllers/userController");
 
-/* GET home page. */
+/// ---  HOMEPAGE  --- ///
 router.get("/", index_controller.index);
+router.post("/", message_controller.delete_message_post)
+
 
 /// ---  SIGN UP  --- ///
 router.get('/sign-up', authentication_controller.signup_get);

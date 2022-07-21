@@ -31,3 +31,10 @@ exports.create_message_post = [
         message.save(err => err ? next(err) : res.redirect("/"))
     }
 ];
+
+exports.delete_message_post = (req, res, next) => {
+    Message.findByIdAndRemove(req.body.messageId, function deleteMessage(err) {
+        if(err) return next(err)
+        return res.redirect("/");
+    });
+};
