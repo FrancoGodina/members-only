@@ -11,11 +11,11 @@ html
                 ul
                     a(href="/log-in")
                         li Log in
-                    a(href="sign-up")
+                    a(href="/sign-up")
                         li Sign up
             else
                 ul
-                    a
+                    a(href="/log-out")
                         li Log out
             if (user)
                 p User #{user.username}
