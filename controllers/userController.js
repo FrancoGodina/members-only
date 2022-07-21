@@ -31,3 +31,10 @@ exports.member_post = [
         })
     }
 ]
+
+exports.admin_get = (req, res, next) => {
+    if (!res.locals.currentUser) {
+        return res.redirect("/log-in");
+    }
+    return res.render("admin_form", { title: "Become an Admin", user: res.locals.currentUser  });
+}
