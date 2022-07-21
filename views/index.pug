@@ -7,5 +7,12 @@ block content
         div
             each message in messages
                 div
-                    h2= message.title
-                    p= message.text
+                    if (user && user.member)
+                        h2= message.title
+                        p= message.text
+                        p Posted by: #{message.username.username}
+                        p #{message.timestamp}
+                    else
+                        h2= message.title
+                        p= message.text
+                        p Log in and become a member to see message's author and date.
