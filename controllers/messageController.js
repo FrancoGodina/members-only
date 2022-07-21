@@ -7,3 +7,27 @@ exports.create_message_get = (req, res , next) => {
     }
     res.render("message_form", { title: "Write your message" , user: res.locals.currentUser });
 }
+
+exports.create_message_post = [
+    body("messageTitle")
+        .trim().isLength({ min: 1 }).escape(),
+    body("messageText")
+        .trim().isLength({ min: 1 }).escape(),
+
+    async (req, res, next) => {
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()) {
+            res.render("message_form", { title: "Write your message", errors: errors.array() });
+        }
+
+        const message = new Message({
+            username: req.user._id,
+            title: req.body.messageTitle,
+            text: req.body.messageText,
+            timestamp: Date.now()
+        })
+
+        message.save(err => err ? next(err) : res.redirect("/"))
+    }
+];

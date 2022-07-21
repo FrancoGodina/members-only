@@ -18,5 +18,6 @@ router.get("/log-out", authentication_controller.logout_get);
 
 /// ---  CREATE MESSAGE  --- ///
 router.get("/create-message", message_controller.create_message_get);
+router.post("/create-message", message_controller.create_message_post);
 
 module.exports = router;
