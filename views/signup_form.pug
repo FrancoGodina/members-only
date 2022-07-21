@@ -7,7 +7,7 @@ block content
         div
             label(for="username") Username:
             input(name="username" required="true" type="text" maxLength="20")
-            if(error)
+            if (error)
                 p #{error}
         div
             label(for="password") Password:
@@ -15,6 +15,6 @@ block content
         div
             label(for="confirmPassword") Confirm Password:
             input#confirmPassword(name="confirmPassword" required="true" type="password")
-            if(passwordConfirmationError)
+            if (passwordConfirmationError)
                 p #{passwordConfirmationError}
         button(type="submit") Register
