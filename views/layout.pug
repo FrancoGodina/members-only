@@ -1,7 +1,22 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    head
+        title= title
+    body
+        div
+            nav
+                a(href="/").title
+                    h3 AnonPosting
+            if (!user)
+                ul
+                    a(href="/log-in")
+                        li Log in
+                    a(href="sign-up")
+                        li Sign up
+            else
+                ul
+                    a
+                        li Log out
+            if (user)
+                p User #{user.username}
     block content

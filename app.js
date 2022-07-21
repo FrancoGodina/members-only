@@ -29,10 +29,7 @@ app.set('view engine', 'pug');
 const secretString = process.env.SECRET_STRING;
 app.use(session({ secret: secretString, resave: false, saveUninitialized: true }));
 
-app.use(function(req, res, next) {
-  res.locals.currentUser = req.user;
-  next();
-});
+
 
 passport.use(
   new LocalStrategy((username, password, done) => {
@@ -67,6 +64,11 @@ passport.deserializeUser(function(id, done) {
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 app.use(logger('dev'));
 app.use(express.json());
