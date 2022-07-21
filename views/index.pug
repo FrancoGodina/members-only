@@ -12,6 +12,10 @@ block content
                         p= message.text
                         p Posted by: #{message.username.username}
                         p #{message.timestamp}
+                    else if (user)
+                        h2= message.title
+                        p= message.text
+                        p Become a member to see message's author and date.
                     else
                         h2= message.title
                         p= message.text
