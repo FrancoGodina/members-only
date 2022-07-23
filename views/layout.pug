@@ -6,27 +6,20 @@ html
         title= title
         link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous")
     body
-        div
-            nav
-                a(href="/").title
+        div(class="navbar navbar-dark bg-dark d-flex p-2")
+            div.navbar-nav
+                a(href="/").navbar-brand
                     h3 Hunter club
             if (!user)
-                ul
-                    a(href="/log-in")
-                        li Log in
-                    a(href="/sign-up")
-                        li Sign up
+                div.navbar-nav(class="d-flex align-items-center flex-row gap-4")
+                    a.nav-link(href="/log-in") Log in
+                    a.nav-link(href="/sign-up") Sign up
             else
-                ul
-                    a(href="/create-message")
-                        li Create message
-                    a(href="/member")
-                        li Membership
-                    a(href="/admin")
-                        li Admin
-                    a(href="/log-out")
-                        li Log out
-            if (user)
-                p User #{user.username}
+                div.navbar-nav(class="d-flex align-items-center flex-row gap-4")
+                    a.nav-link(href="/create-message") Create message
+                    a.nav-link(href="/member") Membership
+                    a.nav-link(href="/admin") Admin
+                    a.nav-link(href="/log-out") Log out
+                    
         script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous")
     block content
