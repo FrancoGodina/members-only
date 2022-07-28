@@ -1,27 +1,29 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
-    if messages
-        div
-            each message in messages
-                div
-                    if (user && user.member)
-                        h2= message.title
-                        p= message.text
-                        p Posted by: #{message.username.username}
-                        p #{message.timestamp}
-                    else if (user)
-                        h2= message.title
-                        p= message.text
-                        p Become a member to see message's author and date.
-                    else
-                        h2= message.title
-                        p= message.text
-                        p Log in and become a member to see message's author and date.
-                    if (user && user.admin)
-                        div
-                            form(action="" method="POST")
-                                input(type="hidden" name="messageId" required="true" value=message._id)
-                                button(type="submit") Delete
+    div(class="d-flex flex-column p-2")
+        h1 Welcome to #{title}
+        if messages
+            div(class="d-flex flex-column p-2 gap-2")
+                each message in messages
+                    div(class="card")
+                        if (user && user.member)
+                            h2(class="card-header")= message.title
+                            ul(class="card-body mb-0")
+                                h5(class="card-text")= message.text
+                                div(class="d-flex justify-content-between align-items-center gap-4")
+                                    p(class="text-muted") User: #{message.username.username}
+                                    p(class="text-muted") #{message.timestamp}
+                                if (user && user.admin)
+                                    form(action="" method="POST")
+                                        input(type="hidden" name="messageId" required="true" value=message._id)
+                                        button(type="submit" class="btn btn-danger") Delete
+                        else if (user)
+                            h2= message.title
+                            p= message.text
+                            p Become a member to see message's author and date.
+                        else
+                            h2= message.title
+                            p= message.text
+                            p Log in and become a member to see message's author and date.
+                        
