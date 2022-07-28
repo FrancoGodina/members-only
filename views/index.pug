@@ -19,11 +19,15 @@ block content
                                         input(type="hidden" name="messageId" required="true" value=message._id)
                                         button(type="submit" class="btn btn-danger") Delete
                         else if (user)
-                            h2= message.title
-                            p= message.text
-                            p Become a member to see message's author and date.
+                            div(class="card")
+                                h2(class="card-header")= message.title
+                                ul(class="card-body mb-0")
+                                    h5(class="card-text")= message.text
+                                    p(class="text-muted") Become a member to see message's author and date.
                         else
-                            h2= message.title
-                            p= message.text
-                            p Log in and become a member to see message's author and date.
+                            div(class="card")
+                                h2(class="card-header")= message.title
+                                ul(class="card-body mb-0")
+                                    h5(class="card-text")= message.text
+                                    p(class="text-muted") Log in and become a member to see message's author and date.
                         
