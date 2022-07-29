@@ -3,17 +3,19 @@ extends layout
 block content
 
     if (!user.admin)
-        form(action="/admin" method="POST")
-            h2= title
-            div
-                label(for="passcode") Enter passcode to be an admin!
-                input(name="passcode" type="password" required="true")
-                if (passcodeError)
-                    p #{passcodeError}
-            button(type="submit") Submit passcode
+        div(class="d-flex flex-column p-2 justify-content-center align-items-center mt-5")
+            form(action="/admin" method="POST")
+                h2= title
+                div
+                    label(for="passcode" class="form-label") Enter passcode to be an admin!
+                    input(name="passcode" type="password" required="true" class="form-control")
+                    if (passcodeError)
+                        p #{passcodeError}
+                br
+                button(type="submit" class="btn btn-primary") Submit passcode
 
-        if (errors)
-            p #{errors}
+            if (errors)
+                p #{errors}
     else
-        div
-            h1 Woah you are an admin.
+        div(class="d-flex flex-column p-2 justify-content-center align-items-center mt-5")
+            h1 You are an admin.
