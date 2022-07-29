@@ -1,14 +1,16 @@
 extends layout
 
 block content
-    form(action="/create-message" method="POST")
-        h2= title
-        div
-            label(for="messageTitle") Title:
-            input(name="messageTitle" required="true" type="text" maxLength="30")
-        div
-            label(for="messageText") Message:
-            input(name="messageText" required="true" type="text" maxLength="1000")
-        button(type="submit") Submit message
-    if (errors)
-        p #{errors}
+    div(class="d-flex flex-column p-2 justify-content-center align-items-center mt-5")
+        form(action="/create-message" method="POST")
+            h2= title
+            div
+                label(for="messageTitle" class="form-label") Title:
+                input(name="messageTitle" required="true" type="text" maxLength="30" class="form-control")
+            div
+                label(for="messageText" class="form-label") Message:
+                textarea(name="messageText" required="true" type="text" rows="5" maxLength="1000" class="form-control")
+            br
+            button(type="submit" class="btn btn-primary") Submit message
+        if (errors)
+            p #{errors}
